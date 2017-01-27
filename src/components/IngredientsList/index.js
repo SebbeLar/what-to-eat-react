@@ -4,7 +4,7 @@ import IngredientItem from './IngredientItem';
 const IngredientsList = ({ingredients}) => (
   <ul>
     {ingredients.map(function(ingredient) {
-      return <IngredientItem name={ingredient.name} />;
+      return <IngredientItem name={ingredient.name} key={ingredient.name} />;
     })}
   </ul>
 );

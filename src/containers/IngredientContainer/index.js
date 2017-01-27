@@ -10,15 +10,32 @@ export default class IngredientContainer extends React.Component {
   }
 
   static propTypes = {
-    action: React.PropTypes.object
+    action: React.PropTypes.object,
+    ingredients: React.PropTypes.array
   }
 
   handleChange(event) {
     this.setState({value: event.target.value});
   }
 
+  checkUniqEntry() {
+    const arr = this.props.ingredients.map(ingredient => {
+      if (ingredient.name === this.state.value) {
+        return false;
+      }
+      return true;
+    });
+    const uniq = arr.every(function(bool) {
+      return bool === true;
+    });
+    console.log(uniq);
+    return uniq;
+  }
+
   handleSubmit(event) {
-    this.props.action.addIngredient(this.state.value);
+    if (this.checkUniqEntry()) {
+      this.props.action.addIngredient(this.state.value);
+    }
     event.preventDefault();
   }
 
