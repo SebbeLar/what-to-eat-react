@@ -10,7 +10,14 @@ export default function ingredients(state = initialState, action) {
   switch (action.type) {
 
   case ADD_INGREDIENT:
-    return state;
+    return [
+      {
+        name: action.text,
+        unit: 'dl',
+        category: 'Whatever'
+      },
+      ...state
+    ];
 
   default:
     return state;

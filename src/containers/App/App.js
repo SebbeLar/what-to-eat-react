@@ -2,25 +2,27 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import IngredientContainer from '../IngredientContainer';
+import IngredientsList from '../../components/IngredientsList';
 import * as Actions from '../../actions';
 
-const App = ({ingredientsReducer, second}) => (
+const App = ({ingredients, action}) => (
   <div>
-    <IngredientContainer ingredientsReducer={ingredientsReducer} second={second} />
+    <IngredientContainer ingredients={ingredients} action={action} />
+    <IngredientsList ingredients={ingredients} />
   </div>
 );
 
 App.propTypes = {
-  ingredientsReducer: React.PropTypes.array,
-  second: React.PropTypes.object
+  ingredients: React.PropTypes.array,
+  action: React.PropTypes.object
 };
 
 const mapStateToProps = state => ({
-  ingredientsReducer: state.ingredientsReducer
+  ingredients: state.ingredients
 });
 
 const mapDispatchToProps = dispatch => ({
-  second: bindActionCreators(Actions, dispatch)
+  action: bindActionCreators(Actions, dispatch)
 });
 
 export default connect(

@@ -10,7 +10,7 @@ export default class IngredientContainer extends React.Component {
   }
 
   static propTypes = {
-    second: React.PropTypes.func
+    action: React.PropTypes.object
   }
 
   handleChange(event) {
@@ -18,7 +18,7 @@ export default class IngredientContainer extends React.Component {
   }
 
   handleSubmit(event) {
-    this.props.second.addIngredient();
+    this.props.action.addIngredient(this.state.value);
     event.preventDefault();
   }
 
