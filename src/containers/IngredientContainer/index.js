@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class IngredientContainer extends React.Component {
+class IngredientContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {value: ''};
@@ -19,8 +19,10 @@ export default class IngredientContainer extends React.Component {
   }
 
   checkUniqEntry() {
+    const state = this.state.value.toLowerCase();
     const arr = this.props.ingredients.map(ingredient => {
-      if (ingredient.name === this.state.value) {
+      const ingredientName = ingredient.name.toLowerCase();
+      if (ingredientName === state) {
         return false;
       }
       return true;
@@ -28,7 +30,6 @@ export default class IngredientContainer extends React.Component {
     const uniq = arr.every(function(bool) {
       return bool === true;
     });
-    console.log(uniq);
     return uniq;
   }
 
@@ -54,3 +55,4 @@ export default class IngredientContainer extends React.Component {
   }
 }
 
+export default IngredientContainer;
