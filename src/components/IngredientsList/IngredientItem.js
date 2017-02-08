@@ -1,7 +1,12 @@
 import React from 'react';
 
 const IngredientItem = ({name}) => (
-  <li> {name} </li>
+  <li>
+    <div>
+      {name}
+      <button>Edit</button>
+    </div>
+  </li>
 );
 
 IngredientItem.propTypes = {

@@ -1,16 +1,25 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import IngredientItem from './IngredientItem';
 
-const IngredientsList = ({ingredients}) => (
-  <ul>
-    {ingredients.map(function(ingredient) {
-      return <IngredientItem name={ingredient.name} key={ingredient.name} />;
-    })}
-  </ul>
-);
+class IngredientsList extends Component {
+  constructor(props) {
+    super(props);
+  }
 
-IngredientsList.propTypes = {
-  ingredients: React.PropTypes.array
-};
+  static propTypes = {
+    ingredients: PropTypes.array
+  };
+
+  render() {
+    const { ingredients } = this.props;
+    return (
+      <ul>
+        {ingredients.map(function(ingredient) {
+          return <IngredientItem name={ingredient.name} key={ingredient.name} />;
+        })}
+      </ul>
+      )
+  }
+}
 
 export default IngredientsList;
