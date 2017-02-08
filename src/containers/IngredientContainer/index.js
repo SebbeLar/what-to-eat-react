@@ -5,6 +5,8 @@ class IngredientContainer extends React.Component {
     super(props);
     this.state = {value: ''};
 
+    this.showError = false;
+
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -14,11 +16,11 @@ class IngredientContainer extends React.Component {
     ingredients: React.PropTypes.array
   }
 
-  handleChange(event) {
+  handleChange = (event) => {
     this.setState({value: event.target.value});
   }
 
-  checkUniqEntry() {
+  checkUniqEntry = () => {
     const state = this.state.value.toLowerCase();
     const arr = this.props.ingredients.map(ingredient => {
       const ingredientName = ingredient.name.toLowerCase();
@@ -33,14 +35,19 @@ class IngredientContainer extends React.Component {
     return uniq;
   }
 
-  handleSubmit(event) {
+  handleSubmit = (event) => {
     if (this.checkUniqEntry()) {
       this.props.action.addIngredient(this.state.value);
+      this.showError = false;
+    } else {
+      this.showError = true;
     }
+    this.setState({value: ''});
     event.preventDefault();
   }
 
   render() {
+    const errorMessage = this.showError;
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -50,6 +57,9 @@ class IngredientContainer extends React.Component {
           </label>
           <input type="submit" value="Submit" />
         </form>
+        {errorMessage &&
+          <div>Milk already exists</div>
+        }
       </div>
     );
   }
