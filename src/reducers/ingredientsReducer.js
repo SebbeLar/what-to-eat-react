@@ -1,5 +1,6 @@
 import {
-  ADD_INGREDIENT
+  ADD_INGREDIENT,
+  EDIT_INGREDIENT
 } from '../constants/ActionTypes';
 
 const initialState = [
@@ -18,6 +19,15 @@ export default function ingredients(state = initialState, action) {
       },
       ...state
     ];
+  case EDIT_INGREDIENT:
+    return state.map((todo, index) => {
+      if(index === action.id) {
+        return Object.assign({}, todo, {
+          name: action.name
+        });
+      }
+      return todo;
+    });
 
   default:
     return state;

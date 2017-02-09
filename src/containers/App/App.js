@@ -8,7 +8,7 @@ import * as Actions from '../../actions';
 const App = ({ingredients, action}) => (
   <div>
     <IngredientContainer ingredients={ingredients} action={action} />
-    <IngredientsList ingredients={ingredients} />
+    <IngredientsList ingredients={ingredients} action={action}/>
   </div>
 );
 
